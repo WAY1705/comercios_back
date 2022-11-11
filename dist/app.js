@@ -8,7 +8,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const auth_1 = __importDefault(require("./routes/auth"));
-const photo_1 = __importDefault(require("./routes/photo"));
+// import PhotoController from './routes/photo'
 // Initializations
 const app = express_1.default();
 // settings
@@ -19,7 +19,7 @@ app.use(express_1.default.json());
 app.use(cors_1.default());
 // Routes
 app.use('/api/auth', auth_1.default);
-app.use('/api/photo', photo_1.default);
+// app.use('/api/photo', PhotoController);
 // this folders for this application will be used to store public file images
 app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
 exports.default = app;
