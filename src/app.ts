@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import path from 'path';
 import cors from 'cors';
 
+
+// rutes auth
 import AuthController from './routes/auth'
 // import PhotoController from './routes/photo'
 

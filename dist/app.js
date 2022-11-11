@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
+// rutes auth
 const auth_1 = __importDefault(require("./routes/auth"));
 // import PhotoController from './routes/photo'
 // Initializations
