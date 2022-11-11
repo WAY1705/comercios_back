@@ -7,4 +7,4 @@ const schema = new mongoose_1.Schema({
     imagePath: String
 });
 exports.default = mongoose_1.model('Photo', schema);
-//# sourceMappingURL=photo.js.map
+//# sourceMappingURL=Photo.js.map

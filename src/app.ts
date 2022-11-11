@@ -10,7 +10,7 @@ import PhotoController from './routes/photo'
 const app: Application = express();
 
 // settings
-app.set('port', 4000 || process.env.PORT);
+app.set('port', 3001 || process.env.PORT);
 
 // Middlewares
 app.use(morgan('dev'));

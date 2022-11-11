@@ -9,7 +9,7 @@ const app_1 = __importDefault(require("./app"));
 require("./database");
 function init() {
     app_1.default.listen(app_1.default.get('port'));
-    console.log('Server on port', 4000);
+    console.log('Server on port', 3001);
 }
 ;
 init();

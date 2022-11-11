@@ -12,7 +12,7 @@ const photo_1 = __importDefault(require("./routes/photo"));
 // Initializations
 const app = express_1.default();
 // settings
-app.set('port', 4000 || process.env.PORT);
+app.set('port', 3001 || process.env.PORT);
 // Middlewares
 app.use(morgan_1.default('dev'));
 app.use(express_1.default.json());
