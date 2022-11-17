@@ -1,12 +1,14 @@
 import { Schema, model, Document, Model } from 'mongoose'
 import bcrypt from 'bcryptjs';
 
+
+
 export interface IUser extends Document {
     username: string;
     email: string;
     password: string;
     encrypPassword(password: string): Promise<string>;
-    validatePassword(password: string): Promise<boolean>;
+    validatePassword(password: string, userPassword: string): Promise<boolean>;
 
 };
 
@@ -36,8 +38,9 @@ userSchema.methods.encrypPassword = async (password: string): Promise<string> =>
     return bcrypt.hash(password, salt);
 };
 
-userSchema.methods.validatePassword = async function(password: string): Promise<boolean> {
-    return await bcrypt.compare(password, password)
+userSchema.methods.validatePassword = async (reqPassword: string, password: string): Promise<boolean> => {
+    const passwordValidate = await bcrypt.compare(reqPassword, password)
+    return passwordValidate
 };
 
 export default model<IUser>('User', userSchema);

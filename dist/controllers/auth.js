@@ -16,11 +16,15 @@ exports.profile = exports.signin = exports.signup = void 0;
 const User_1 = __importDefault(require("../models/User"));
 const joi_1 = require("../libs/joi");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const domain_1 = require("domain");
 exports.signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Validation
     const { error } = joi_1.signupValidation(req.body);
-    if (error)
-        return res.status(400).json(error.message);
+    if (error) {
+        return res.status(404).json({ message: domain_1.create });
+    }
+    else
+        res.status(200).json({ message: domain_1.create });
     // Email Validation
     const emailExists = yield User_1.default.findOne({ email: req.body.email });
     if (emailExists)
@@ -50,12 +54,12 @@ exports.signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(400).json(error.message);
     const user = yield User_1.default.findOne({ email: req.body.email });
     if (!user)
-        return res.status(400).json('Email or Password is wrong');
-    const correctPassword = yield user.validatePassword(req.body.password);
+        return res.status(401).json('Email or Password is wrong');
+    const correctPassword = yield user.validatePassword(req.body.password, user.password);
     if (!correctPassword)
         return res.status(400).json('Invalid Password');
     // Create a Token
-    const token = jsonwebtoken_1.default.sign({ _id: user._id }, process.env['TOKEN_SECRET'] || '');
+    const token = jsonwebtoken_1.default.sign({ _id: user._id }, process.env['TOKEN_SECRET'] || '', {});
     res.header('auth-token', token).json(token);
 });
 exports.profile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

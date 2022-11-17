@@ -8,8 +8,9 @@ dotenv_1.default.config();
 const app_1 = __importDefault(require("./app"));
 require("./database");
 function init() {
-    app_1.default.listen(app_1.default.get('port'));
-    console.log('Server on port', 3001);
+    let port = app_1.default.get('port');
+    app_1.default.listen(port);
+    console.log('Server on port', port);
 }
 ;
 init();

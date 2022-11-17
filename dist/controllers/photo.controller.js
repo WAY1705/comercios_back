@@ -28,7 +28,7 @@ exports.getPhotos = getPhotos;
 function createPhoto(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { title, description } = req.body;
-        const newPhoto = { title, description, imagePath: req.file.path };
+        const newPhoto = { title, description, imagePath: req.path };
         const photo = new Photo_1.default(newPhoto);
         yield photo.save();
         return res.json({
